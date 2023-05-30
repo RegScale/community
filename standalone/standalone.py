@@ -57,7 +57,7 @@ def get_platform():
         elif platform.system() == "Darwin":
             return("Mac")
     except:
-        print("Operating system unknown\n RegScale can be installed on Windows, Mac, or Linux. Exiting installation.")
+        print("Operating system unknown.\n RegScale can be installed on Windows, Mac, or Linux. Exiting installation.")
         sys.exit(1)
 
 def check_docker(platform):
@@ -201,7 +201,7 @@ def deploy_RegScale(user_platform):
             os.system(docker_command + " up -d")
         else:
             # Run behind the scenes -- Linux and Mac need sudo
-            os.system("sudo "+ docker_command + " up -d")
+            os.system("sudo " + docker_command + " up -d")
         # Open Local version of RegScale
         webbrowser.open(REGSCALE_LOCAL, new=2)
     except:
@@ -220,10 +220,10 @@ def update_docker_compose_arm64(env_file):
         print("Updating docker-compose to use Azure SQL Edge Error\n")
     return
 
-def update_db_env_arm64(env_file):
+def update_db_env_arm64(db_env_file):
     """Update db.env to use Azure SQL Edge instead of MS SQL"""
     try:
-        path = Path(env_file)
+        path = Path(db_env_file)
         text = path.read_text()
         text = text.replace("ACCEPT_EULA=Y", "ACCEPT_EULA=1")
         text = text.replace("MSSQL_PID=Express", "MSSQL_PID=Developer")
