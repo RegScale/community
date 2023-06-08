@@ -23,7 +23,7 @@ def teardown():
             # Determine if using docker compose v1 or v2
             try:
                 subprocess.check_output('docker compose version', shell=True)
-                print('Confirmed docker ycompose v2 command is available.')
+                print('Confirmed docker compose v2 command is available.')
                 docker_command = 'docker compose'
             except:
                 print('Current docker compose version is not v2. Proceeding with v1.')

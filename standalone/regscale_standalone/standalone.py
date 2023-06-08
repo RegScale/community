@@ -145,7 +145,7 @@ def deploy_RegScale():
             # Run behind the scenes -- Linux and Mac need sudo
             os.system("sudo " + docker_command + " up -d")
         # Open Local version of RegScale
-        print(f'Now launching at\n\n {REGSCALE_LOCAL}\n\n. Please wait several minutes for application to finish setting up and then refresh your browser.')
+        print(f'\n\nNow launching application at:  {REGSCALE_LOCAL}\n\n')
         webbrowser.open(REGSCALE_LOCAL, new=2)
     except:
         print("Docker Compose Error. Unable to complete installation.\n")
