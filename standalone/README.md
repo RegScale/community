@@ -8,14 +8,14 @@
 
  * Python 3.9 or higher.
  * Docker Engine is installed. 
- * Any applicable post-installation steps for docker configuration are complete. (For example, on Linux the user must be added to docker group.)
- * pip is installed.
- * Following best practice, we will install using a virtual environment. You can use the virtual environment of your choice, but these instructions will assume [virtualenv](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv) is installed. 
+ * Any applicable post-installation steps for docker configuration are complete. (For example, on Linux the user must be [added to docker group](https://docs.docker.com/engine/install/linux-postinstall/).)
+ * pip is installed. You can confirm with `pip list` or `pip3 list`. If not installed: Linux `sudo apt-get install python3-pip` or `yum install python3-pip`. For Windows see official [documentation](https://pip.pypa.io/en/stable/installation/).
+ * Following best practice, we will install using a virtual environment. You can use the virtual environment of your choice, but these instructions will assume [virtualenv](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv) is installed. For example, on Debian systems using apt: `sudo apt install python3-virtualenv` or `py -m pip install --user virtualenv` on Windows.
 
 ### Instructions for Installation
 * Make a directory for installation.
-* Download regscale_standalone.zip into the installation directory.
-* Create a virtual environment (`virtualenv standalone`) and then activate it (`source standalone/bin/activate`)
+* Download `regscale_standalone.zip` into the installation directory.
+* Create a virtual environment (`virtualenv reg_env`) and then activate it (`source reg_env/bin/activate`)
 * Install RegScale Standalone:   `pip install regscale_standalone.zip` or `pip3 install regscale_standalone.zip`
 * Run the installation with the following command:  `regscale-standalone install`
 
