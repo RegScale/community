@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  atlas-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    hostname: atlas-db
+    container_name: atlas-db
+    restart: always
+    networks:
+      - atlas_net
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlvolume:/var/opt/mssql
+    env_file:
+      - db.env
+
+  atlas:
+    image: regscale/regscale:latest
+    hostname: atlas
+    container_name: atlas
+    restart: always
+    depends_on:
+      - atlas-db
+    networks:
+      - atlas_net
+    ports:
+      - "81:80"
+    volumes:
+      - atlasvolume:/atlas/files
+    env_file:
+      - atlas.env
+
+networks:
+  atlas_net:
+    driver: bridge
+volumes:
+  sqlvolume:
+  atlasvolume:
