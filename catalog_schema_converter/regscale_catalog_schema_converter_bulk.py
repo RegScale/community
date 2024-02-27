@@ -167,8 +167,6 @@ def purge_system_metadata(dict_record):
             del dict_record['dateLastUpdated']
         if 'securityControlId' in dict_record:
             del dict_record['securityControlId']
-        if 'controlType' in dict_record:
-            del dict_record['controlType']
         if 'tenantsId' in dict_record:
             del dict_record['tenantsId']
     except Exception as e:
