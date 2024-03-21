@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: atlas-config
+  namespace: atlas
+data:
+  # File Configuration
+  StoredFilesPath: '/atlas/files'
+  FileSizeLimit: "104857600"
+  # If you want to enable monitoring, enter your Sentry.io Sdn, otherwise, leave blank
+  SENTRY: ""

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: atlas-efs-nfs-pv
+spec:
+  capacity:
+    storage: 1Gi # Doesn't really matter, as EFS does not enforce it anyway
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+    - rsize=1048576
+    - wsize=1048576
+    - timeo=600
+    - retrans=2
+  nfs:
+    path: /
+    server: [FileSystemId].efs.[Region].amazonaws.com

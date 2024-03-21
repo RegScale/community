@@ -17,5 +17,5 @@ spec:
       paths:
       - backend:
           serviceName: atlas-service
-          servicePort: 8080
+          servicePort: 80
         path: /(.*)
