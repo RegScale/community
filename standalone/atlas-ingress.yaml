@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: atlas-ingress
+  namespace: atlas
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  tls:
+  - hosts:
+    - atlas.yourdomain.com  #Update this to your atlas url
+    secretName: atlas-tls-secret
+  rules:
+  - host: atlas.yourdomain.com #Update this to your atlas url
+    http:
+      paths:
+      - backend:
+          serviceName: atlas-service
+          servicePort: 80
+        path: /(.*)

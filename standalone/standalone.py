@@ -53,7 +53,7 @@ def config_and_deploy():
 
     # URLs for config files
     atlas_env = "https://atlasity-io.web.app/assets/kb/yaml/stand-alone/atlas.env"
-    atlas_local_file = "standalone/atlas.env"
+    atlas_local_file = "atlas.env"
     db_env = "https://atlasity-io.web.app/assets/kb/yaml/stand-alone/db.env"
     db_local_file = "db.env"
     docker_compose_yml = "https://atlasity-io.web.app/assets/kb/yaml/stand-alone/docker-compose.yml"

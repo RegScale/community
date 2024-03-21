@@ -1,0 +1,18 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-ingress-controller
+  namespace: atlas
+  labels:
+    app: nginx-ingress-controller
+data:
+    body-size: 100m
+    client-max-body-size: 100m
+    error-log-level: error
+    hsts: "false"
+    hsts-include-subdomains: "false"
+    proxy-body-size: 100m
+    proxy-connect-timeout: "15"
+    proxy-read-timeout: "600"
+    proxy-send-timeout: "600"
+    server-name-hash-bucket-size: "256"

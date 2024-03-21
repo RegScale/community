@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: atlas-files
+  namespace: atlas
+spec:
+  accessModes:
+  - ReadWriteMany
+  # storageClassName: aws-efs
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 1Gi
