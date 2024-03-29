@@ -23,7 +23,7 @@ spec:
         image: c2labs/atlasity:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         volumeMounts:
           - mountPath: "/atlas/files"
             name: atlas-files 
