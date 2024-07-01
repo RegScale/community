@@ -52,11 +52,11 @@ def config_and_deploy():
         sys.exit()
 
     # URLs for config files
-    atlas_env = "https://atlasity-io.web.app/assets/kb/yaml/stand-alone/atlas.env"
+    atlas_env = "https://raw.githubusercontent.com/RegScale/community/main/standalone/atlas.env"
     atlas_local_file = "atlas.env"
-    db_env = "https://atlasity-io.web.app/assets/kb/yaml/stand-alone/db.env"
+    db_env = "https://raw.githubusercontent.com/RegScale/community/main/standalone/db.env"
     db_local_file = "db.env"
-    docker_compose_yml = "https://atlasity-io.web.app/assets/kb/yaml/stand-alone/docker-compose.yml"
+    docker_compose_yml = "https://raw.githubusercontent.com/RegScale/community/main/standalone/docker-compose.yml"
     docker_compose_local_file = "docker-compose.yml"
     regScale_Local = "http://localhost:81"
 
