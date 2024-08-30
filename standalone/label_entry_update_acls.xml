@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2024-08-27 16:28:32">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description/>
+<inserted/>
+<name>Label Entry Update Set</name>
+<origin_sys_id/>
+<parent display_value=""/>
+<release_date/>
+<remote_base_update_set display_value=""/>
+<remote_parent_id/>
+<remote_sys_id>8f42fd95c39c1610b5f5554d050131ba</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2024-08-27 16:28:32</sys_created_on>
+<sys_id>ebc23159c39c1610b5f5554d05013168</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-08-27 16:28:32</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_security_acl_00307d55c39c1610b5f5554d05013108</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl"><sys_security_acl action="INSERT_OR_UPDATE"><active>true</active><admin_overrides>true</admin_overrides><advanced>true</advanced><condition/><description>Allow the user to write the Table name.</description><local_or_existing>Local</local_or_existing><name>label_entry.table</name><operation display_value="write">write</operation><script/><security_attribute display_value="ACL_00307d55c39c1610b5f5554d05013108">52a03955c39c1610b5f5554d05013189</security_attribute><sys_class_name>sys_security_acl</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-08-27 16:19:19</sys_created_on><sys_id>00307d55c39c1610b5f5554d05013108</sys_id><sys_mod_count>0</sys_mod_count><sys_name>label_entry.table</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_security_acl_00307d55c39c1610b5f5554d05013108</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-08-27 16:19:19</sys_updated_on><type display_value="record">record</type></sys_security_acl></record_update>]]></payload>
+<payload_hash>-1025898467</payload_hash>
+<remote_update_set display_value="Label Entry Update Set">ebc23159c39c1610b5f5554d05013168</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2024-08-27 16:28:32</sys_created_on>
+<sys_id>27c27559c39c1610b5f5554d050131ff</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>19194a271480000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-08-27 16:28:32</sys_updated_on>
+<table>label_entry.table</table>
+<target_name>label_entry.table</target_name>
+<type>Access Control</type>
+<update_domain>global</update_domain>
+<update_guid>68b0b555619c16106e8c0d9a4e6932f8</update_guid>
+<update_guid_history>68b0b555619c16106e8c0d9a4e6932f8:-1025898467</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_security_attribute_52a03955c39c1610b5f5554d05013189</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_attribute"><sys_security_attribute action="INSERT_OR_UPDATE"><active>true</active><condition>Role=2831a114c611228501d4ea6c309d626d</condition><description>Auto Created Attribute - ACL_00307d55c39c1610b5f5554d05013108</description><is_dynamic>true</is_dynamic><is_localized>true</is_localized><is_system>false</is_system><label>ACL_00307d55c39c1610b5f5554d05013108</label><lookup_table/><lookup_table_column/><name>ACL_00307d55c39c1610b5f5554d05013108</name><script/><sys_class_name>sys_security_attribute</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-08-27 16:19:10</sys_created_on><sys_id>52a03955c39c1610b5f5554d05013189</sys_id><sys_mod_count>0</sys_mod_count><sys_name>ACL_00307d55c39c1610b5f5554d05013108</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_security_attribute_52a03955c39c1610b5f5554d05013189</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-08-27 16:19:10</sys_updated_on><type>compound</type></sys_security_attribute></record_update>]]></payload>
+<payload_hash>502912985</payload_hash>
+<remote_update_set display_value="Label Entry Update Set">ebc23159c39c1610b5f5554d05013168</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2024-08-27 16:28:32</sys_created_on>
+<sys_id>63c2b559c39c1610b5f5554d05013100</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>19194a24fa10000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-08-27 16:28:32</sys_updated_on>
+<table/>
+<target_name>ACL_00307d55c39c1610b5f5554d05013108</target_name>
+<type>Security Attribute</type>
+<update_domain>global</update_domain>
+<update_guid>aaa0f595db9c161027aedbeee39eb850</update_guid>
+<update_guid_history>aaa0f595db9c161027aedbeee39eb850:502912985</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_security_attribute_05f07995c39c1610b5f5554d050131b1</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_attribute"><sys_security_attribute action="INSERT_OR_UPDATE"><active>true</active><condition>Role=2831a114c611228501d4ea6c309d626d</condition><description>Auto Created Attribute - ACL_1fb07995c39c1610b5f5554d05013139</description><is_dynamic>true</is_dynamic><is_localized>true</is_localized><is_system>false</is_system><label>ACL_1fb07995c39c1610b5f5554d05013139</label><lookup_table/><lookup_table_column/><name>ACL_1fb07995c39c1610b5f5554d05013139</name><script/><sys_class_name>sys_security_attribute</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-08-27 16:20:27</sys_created_on><sys_id>05f07995c39c1610b5f5554d050131b1</sys_id><sys_mod_count>0</sys_mod_count><sys_name>ACL_1fb07995c39c1610b5f5554d05013139</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_security_attribute_05f07995c39c1610b5f5554d050131b1</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-08-27 16:20:27</sys_updated_on><type>compound</type></sys_security_attribute></record_update>]]></payload>
+<payload_hash>1644157145</payload_hash>
+<remote_update_set display_value="Label Entry Update Set">ebc23159c39c1610b5f5554d05013168</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2024-08-27 16:28:32</sys_created_on>
+<sys_id>afc27559c39c1610b5f5554d050131ff</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>19194a379f50000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-08-27 16:28:32</sys_updated_on>
+<table/>
+<target_name>ACL_1fb07995c39c1610b5f5554d05013139</target_name>
+<type>Security Attribute</type>
+<update_domain>global</update_domain>
+<update_guid>49f07995869c16107ae07dd79aff3cb2</update_guid>
+<update_guid_history>49f07995869c16107ae07dd79aff3cb2:1644157145</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_security_acl_1fb07995c39c1610b5f5554d05013139</name>
+<payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl"><sys_security_acl action="INSERT_OR_UPDATE"><active>true</active><admin_overrides>true</admin_overrides><advanced>true</advanced><condition/><description>Allow the user to update the table key in label_entry table.</description><local_or_existing>Local</local_or_existing><name>label_entry.table_key</name><operation display_value="write">write</operation><script/><security_attribute display_value="ACL_1fb07995c39c1610b5f5554d05013139">05f07995c39c1610b5f5554d050131b1</security_attribute><sys_class_name>sys_security_acl</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-08-27 16:20:28</sys_created_on><sys_id>1fb07995c39c1610b5f5554d05013139</sys_id><sys_mod_count>0</sys_mod_count><sys_name>label_entry.table_key</sys_name><sys_package display_value="Global" source="global">global</sys_package><sys_policy/><sys_scope display_value="Global">global</sys_scope><sys_update_name>sys_security_acl_1fb07995c39c1610b5f5554d05013139</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-08-27 16:20:28</sys_updated_on><type display_value="record">record</type></sys_security_acl></record_update>]]></payload>
+<payload_hash>195476545</payload_hash>
+<remote_update_set display_value="Label Entry Update Set">ebc23159c39c1610b5f5554d05013168</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2024-08-27 16:28:32</sys_created_on>
+<sys_id>ebc27559c39c1610b5f5554d050131ff</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>19194a37ffd0000001</sys_recorded_at>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2024-08-27 16:28:32</sys_updated_on>
+<table>label_entry.table_key</table>
+<target_name>label_entry.table_key</target_name>
+<type>Access Control</type>
+<update_domain>global</update_domain>
+<update_guid>e9f0f595a19c1610268c9658e068a778</update_guid>
+<update_guid_history>e9f0f595a19c1610268c9658e068a778:195476545</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>
