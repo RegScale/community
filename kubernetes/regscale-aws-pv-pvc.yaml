@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: efs-pv-regscale
+spec:
+  capacity:
+    storage: 10Gi #adjust this to your desired size
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: aws-efs
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: <YOUR FS ID> #fs-084654bxxxxx
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: files-regscale
+  namespace: regscale
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: aws-efs
+  resources:
+    requests:
+      storage: 10Gi #adjust this to your desired size
