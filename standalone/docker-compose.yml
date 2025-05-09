@@ -1,7 +1,7 @@
 services:
   atlas-db:
     build:
-      dockerfile: Dockerfile
+      dockerfile: mssql-fts.dockerfile
     user: root
     hostname: atlas-db
     container_name: atlas-db
