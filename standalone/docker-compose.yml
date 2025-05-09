@@ -1,6 +1,8 @@
 services:
   atlas-db:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    build:
+      dockerfile: Dockerfile
+    user: root
     hostname: atlas-db
     container_name: atlas-db
     restart: always
