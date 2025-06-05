@@ -1,8 +1,6 @@
 services:
   atlas-db:
-    build:
-      dockerfile: mssql-fts.dockerfile
-    user: root
+    image: regscale/regscale-mssql-db:latest
     hostname: atlas-db
     container_name: atlas-db
     restart: always
@@ -25,7 +23,7 @@ services:
     networks:
       - atlas_net
     ports:
-      - "81:8080"
+      - "80:8080"
     volumes:
       - atlasvolume:/atlas/files
     env_file:
