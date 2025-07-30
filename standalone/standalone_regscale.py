@@ -276,7 +276,8 @@ def setup(install_dir: str = os.curdir) -> None:
             "have problems you may be able to manually edit the docker "
             "compose file %r to point at an instance of MS SQL Server running "
             "on supported AMD64 architecture, though it is likely easier to "
-            "simply run the standalone RegScale there instead."
+            "simply run the standalone RegScale there instead.",
+            os.path.join(install_dir, DOCKER_COMPOSE_YAML_FILE)
         )
 
     db_key = generate_secret(12)

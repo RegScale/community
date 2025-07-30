@@ -4,7 +4,7 @@
 
 [RegScale](https://regscale.com/) shifts compliance left by bridging the divide between cybersecurity and compliance. This repository is for sharing scripts, integrations, and other automations with the RegScale community.
 
-* **standalone** - Resources to facilitate a standalone installation of the RegScale platform. These resources are fully documented in the [Installation Options](https://regscale.readme.io/docs/installation-options) section of RegScale's user documentation.
+* **standalone** - Resources to facilitate a standalone installation of the RegScale platform. A README is provided for the `standalong_regscale.py` script which provides a quick intial setup. These resources are fully documented in the [Installation Options](https://regscale.readme.io/docs/installation-options) section of RegScale's user documentation.
 
 
 
