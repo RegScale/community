@@ -19,6 +19,7 @@ environment configuration and credential generation.
 ## Requirements
 
 ### System Requirements
+- **Python**: Version 3.10 or higher
 - **Docker**: Version 20.10 or higher
 - **Operating System**: Windows, Mac OS, or Linux
 - **Architecture**: AMD64 only
@@ -34,7 +35,8 @@ not work properly.
 - Sufficient disk space for container images and volumes
 
 If you can run `docker ps` successfully, `standalone_regscale.py` should run
-with no issues.
+with no issues. On some systems, this may require the user to be in the
+`docker` group, if not done automatically when installing Docker.
 
 ## Usage
 
