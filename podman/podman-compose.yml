@@ -1,0 +1,24 @@
+services:
+  regscale:
+    image: regscale/regscale-ubi:<tag/version> #change to a the RegScale version you want to deploy
+    hostname: regscale
+    container_name: regscale
+    depends_on:
+      - regscale-db
+    networks:
+      - regscale_net
+    ports:
+      - "8000:80"
+      # - "8443:443" #Uncomment if you want to use SSL
+    volumes:
+      - ./files:/app/atlas-files
+      # - ./ssl:/app/ssl:ro #Uncomment if you want to use SSL
+    environment:
+      # - OPENSSL_CONF=/etc/ssl/openssl.cnf #Uncomment if you want to use SSL
+    env_file:
+      - regscale.env
+
+networks:
+  regscale_net:
+    driver: bridge
+

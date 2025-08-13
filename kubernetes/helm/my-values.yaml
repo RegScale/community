@@ -1,0 +1,288 @@
+# Default values for RegScale Helm Chart
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Global settings
+global:
+  imageRegistry: ""
+  imagePullSecrets: []
+
+# Image settings
+image:
+  registry: docker.io
+  repository: regscale/regscale
+  tag: "" # Overrides the image tag whose default is the chart appVersion
+  pullPolicy: Always
+  pullSecrets: []
+
+# Application deployment configuration
+app:
+  replicaCount: 1
+  
+  # Pod disruption budget
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+    # maxUnavailable: ""
+  
+  # Update strategy
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  
+  # Startup, readiness and liveness probes
+  probes:
+    startup:
+      enabled: true
+      httpGet:
+        path: /health
+        port: http
+      initialDelaySeconds: 120
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 60
+    
+    readiness:
+      enabled: true
+      httpGet:
+        path: /health
+        port: http
+      initialDelaySeconds: 30
+      periodSeconds: 30
+      timeoutSeconds: 10
+      failureThreshold: 5
+    
+    liveness:
+      enabled: true
+      httpGet:
+        path: /health
+        port: http
+      initialDelaySeconds: 20
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 5
+
+  # Resource limits and requests
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi
+
+  # Security context
+  podSecurityContext:
+    runAsNonRoot: true
+    runAsUser: 1001
+    runAsGroup: 1001
+    fsGroup: 1001
+
+  securityContext:
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: false
+    capabilities:
+      drop:
+        - ALL
+
+  # Node assignment
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+  # Pod annotations and labels
+  podAnnotations: {}
+  podLabels: {}
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+  annotations: {}
+  labels: {}
+
+# Ingress configuration
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: regscale.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  #  - secretName: regscale-tls
+  #    hosts:
+  #      - regscale.local
+
+# Load Balancer service (alternative to ingress)
+loadBalancer:
+  enabled: false
+  annotations: {}
+    # service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+    # service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+
+# Service Account
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+# RBAC
+rbac:
+  create: true
+
+# Network Policy
+networkPolicy:
+  enabled: false
+
+# Pod Security Policy (deprecated in K8s 1.25+)
+podSecurityPolicy:
+  enabled: false
+
+# Secrets configuration
+secrets:
+  # JWT Secret Key - MUST be exactly 32, 64, or 128 characters
+  # CHANGE THIS VALUE FOR PRODUCTION
+  jwtSecretKey: "JWTSecretKeyFromSomeWhere6789012"
+  
+  # Encryption Key - MUST be exactly 32, 64, or 128 characters
+  # CHANGE THIS VALUE FOR PRODUCTION
+  encryptionKey: "YourEncryptionKeyFromSomeWhere12"
+  
+  # Database connection string
+  # CHANGE THIS VALUE FOR PRODUCTION
+  sqlConnectionString: |
+    Server=tcp:yourdatabase.database.windows.net,1433;
+    Initial Catalog=ATLAS;
+    Persist Security Info=False;
+    User ID=youruserID;
+    Password=yourPassword;
+    MultipleActiveResultSets=False;
+    Encrypt=True;
+    TrustServerCertificate=False;
+    Connection Timeout=30;
+
+  # Existing secret (alternative to specifying secrets above)
+  existingSecret: ""
+  existingSecretKeys:
+    jwtSecretKey: "JWTSecretKey"
+    encryptionKey: "EncryptionKey"
+    sqlConnectionString: "SQLConn"
+
+# ConfigMap configuration
+config:
+  storedFilesPath: "atlas-files"
+  fileSizeLimit: "104857600"  # 100MB in bytes
+  
+  # Additional environment variables
+  extraEnvVars: {}
+    # ASPNETCORE_ENVIRONMENT: Production
+    # TZ: America/New_York
+
+# Storage configuration
+storage:
+  # Persistent volume for asset storage (default option)
+  persistence:
+    enabled: true
+    storageClass: ""  # Use default storage class if empty
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
+    annotations: {}
+    
+  # Alternative storage configurations
+  # Azure File Share
+  azureFile:
+    enabled: false
+    resourceGroup: ""
+    storageAccount: ""
+    shareName: ""
+    secretName: ""  # Secret containing storage account key
+    
+  # Azure Blob Storage  
+  azureBlob:
+    enabled: false
+    resourceGroup: ""
+    storageAccount: ""
+    containerName: ""
+    secretName: ""  # Secret containing storage account key
+    
+  # AWS EBS (Elastic Block Store) - Uses default AWS EBS CSI driver
+  awsEBS:
+    enabled: false
+    storageClass: "gp3"  # gp2, gp3, io1, io2, st1, sc1
+    size: 10Gi
+    iops: 3000  # Only for io1, io2, gp3 volume types
+    throughput: 125  # Only for gp3 volume types (125-1000 MiB/s)
+    encrypted: true
+    kmsKeyId: ""  # Optional: KMS key ID for encryption
+    
+  # AWS EFS (Elastic File System) - Requires AWS EFS CSI driver
+  awsEFS:
+    enabled: false
+    fileSystemId: ""  # Required: EFS file system ID (fs-xxxxxx)
+    accessPoint: ""   # Optional: EFS access point ID (fsap-xxxxxx)
+    region: ""        # Required: AWS region
+    
+  # Google Cloud Persistent Disk - Uses GCE PD CSI driver
+  gcePD:
+    enabled: false
+    storageClass: "standard-rwo"  # standard-rwo, ssd-rwo, balanced-rwo
+    size: 10Gi
+    zone: ""          # Optional: specific zone for zonal disks
+    replicationType: "none"  # none, regional-pd
+    
+  # Google Cloud Filestore - Requires Google Cloud Filestore CSI driver
+  gceFilestore:
+    enabled: false
+    fileShareName: ""  # Required: Filestore instance name
+    region: ""         # Required: GCP region
+    project: ""        # Required: GCP project ID
+    
+  # NFS (Generic Network File System)
+  nfs:
+    enabled: false
+    server: ""
+    path: ""
+    readOnly: false
+
+# Horizontal Pod Autoscaler
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+# Monitoring and observability
+monitoring:
+  serviceMonitor:
+    enabled: false
+    namespace: ""
+    interval: 30s
+    path: /health
+    labels: {}
+    
+  podMonitor:
+    enabled: false
+    namespace: ""
+    interval: 30s
+    path: /health
+    labels: {}
+
+# Common labels to apply to all resources
+commonLabels: {}
+
+# Common annotations to apply to all resources  
+commonAnnotations: {}
+
+# Extra objects to deploy (for advanced use cases)
+extraObjects: []
