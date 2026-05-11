@@ -23,7 +23,7 @@ services:
     networks:
       - atlas_net
     ports:
-      - "80:8080"
+      - "80:80"
     volumes:
       - atlasvolume:/atlas/files
     env_file:
