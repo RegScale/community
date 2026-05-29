@@ -13,6 +13,7 @@ import os.path
 import platform
 import random
 import re
+import secrets
 import string
 import subprocess
 import sys
@@ -72,6 +73,15 @@ _CLEAR_DIGITS = "".join(
 _CLEAR_SPECIALS = "_.-+"
 _CLEAR_CHARS = _CLEAR_LETTERS + _CLEAR_DIGITS + _CLEAR_SPECIALS
 
+# Alphabet used for cryptographic keys written to env files. Restricted to
+# the base64url alphabet minus padding (no '=') and minus '+'. The RegScale
+# AES-256 path reads the EncryptionKey env var as raw UTF-8 bytes and
+# requires the byte length to equal the key size exactly, so the value must
+# also survive env-var transport across shells and platforms intact.
+_BASE64URL_KEY_CHARS = string.ascii_letters + string.digits + "-_"
+_AES_256_KEY_BYTES = 32
+_JWT_KEY_BYTES = 32
+
 
 def generate_secret(length: int) -> str:
     """Generate a randomized, typable secret of the given length.
@@ -98,6 +108,36 @@ def generate_secret(length: int) -> str:
         chars.append(random.choice(_CLEAR_CHARS))
     random.shuffle(chars)
     return "".join(chars)
+
+
+def generate_key(length: int) -> str:
+    """Generate a cryptographically secure key of the given length.
+
+    The key uses only the base64url alphabet minus '=' (so the value is safe
+    in env files, shells, and across platforms) and is drawn from the
+    ``secrets`` module rather than ``random``. Because the RegScale runtime
+    consumes the EncryptionKey env var as raw UTF-8 bytes, the resulting
+    string length in characters equals its length in bytes.
+    """
+    if length < 1:
+        raise ValueError(f"Cannot generate a key of length {length}!")
+    return "".join(secrets.choice(_BASE64URL_KEY_CHARS) for _ in range(length))
+
+
+def _assert_aes_key_length(key: str) -> None:
+    """Validate that the generated EncryptionKey is exactly 32 bytes.
+
+    The RegScale runtime calls ``Encoding.UTF8.GetBytes`` on the env var and
+    rejects the key with ``"...must encode to exactly 32 bytes for AES-256"``
+    unless the byte length matches AES-256 exactly. The key alphabet is
+    ASCII-only so character length equals UTF-8 byte length.
+    """
+    encoded_len = len(key.encode("utf-8"))
+    if encoded_len != _AES_256_KEY_BYTES:
+        raise RuntimeError(
+            f"Generated EncryptionKey is {encoded_len} bytes; "
+            f"AES-256 requires exactly {_AES_256_KEY_BYTES} bytes."
+        )
 
 
 def update_text(
@@ -281,6 +321,9 @@ def setup(install_dir: str = os.curdir) -> None:
         )
 
     db_key = generate_secret(12)
+    jwt_key = generate_key(_JWT_KEY_BYTES)
+    encryption_key = generate_key(_AES_256_KEY_BYTES)
+    _assert_aes_key_length(encryption_key)
     update_config(
         db_env_path,
         (("SA_PASSWORD=", None, db_key),),
@@ -289,8 +332,8 @@ def setup(install_dir: str = os.curdir) -> None:
         atlas_env_path,
         (
             ("Password=", ";", db_key),
-            ("JWTSecretKey=", "\n", generate_secret(32)),
-            ("EncryptionKey=", "\n", generate_secret(64)),
+            ("JWTSecretKey=", "\n", jwt_key),
+            ("EncryptionKey=", "\n", encryption_key),
         ),
     )
 
@@ -453,7 +496,7 @@ def open_browser_after_startup() -> None:
             LOG.exception("Skipping opening web browser tab to: http://localhost")
             raise
         started = (
-            "RegScale startup completed." in result.stdout
+            "PostStartupHostedService completed successfully" in result.stdout
             if result.stdout
             else False
         )
